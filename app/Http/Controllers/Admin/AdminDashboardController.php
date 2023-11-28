@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AlumniDetailResource;
+use App\Http\Resources\PostDetailResource;
 use App\Models\Alumni;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,15 +16,15 @@ class AdminDashboardController extends Controller
     {
         $user = auth()->user();
         $users = User::all();
-        $posts = Post::all();
-        $alumni = Alumni::all();
+        $posts = Post::with('writer:id,username,email,role')->get();
+        $alumni = Alumni::with('DetailAccount:id,username,email,role')->get();
     
         return response()->json([
             'data' => [
                 'profile' => $user,
                 'users' => $users,
-                'posts' => $posts,
-                'alumni' => $alumni,
+                'posts' => PostDetailResource::collection($posts),
+                'alumni' => AlumniDetailResource::collection($alumni),
             ],
         ]);
     }

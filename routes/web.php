@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function(){
+    return response()->json(['BELAJAR MEMBUAT API DENGAN LARAVEL']);
 });
 
 require __DIR__.'/auth.php';
