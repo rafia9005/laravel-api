@@ -26,6 +26,6 @@ class AdminDashboardController extends Controller
                 'posts' => PostDetailResource::collection($posts),
                 'alumni' => AlumniDetailResource::collection($alumni),
             ],
-        ]);
+        ], 200);
     }
 }
