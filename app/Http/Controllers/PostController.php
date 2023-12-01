@@ -43,7 +43,7 @@ class PostController extends Controller
 
         $postCreate->save();
 
-        return new PostResource($postCreate);
+        return response()->json(new PostResource($postCreate), 201);
     }
     public function delete($id)
     {

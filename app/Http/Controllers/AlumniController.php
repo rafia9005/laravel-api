@@ -44,6 +44,6 @@ class AlumniController extends Controller
 
         // Menyimpan kedalam database!
         $alumniCreate->save();
-        return new AlumniDetailResource($alumniCreate);
+        return response()->json(new AlumniDetailResource([$alumniCreate]), 201);
     }
 }
