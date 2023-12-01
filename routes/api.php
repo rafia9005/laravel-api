@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\AlumniController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostDetailController;
 use App\Http\Controllers\UserController;
@@ -37,6 +38,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     */
     Route::middleware(['admin'])->group(function () {
         Route::get('/admin', [AdminDashboardController::class, 'index']);
+        Route::get('/berita', [BeritaController::class, 'index']);
+        Route::post('/berita/create', [BeritaController::class, 'create']);
     });
 });
 
